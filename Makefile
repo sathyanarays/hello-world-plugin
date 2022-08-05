@@ -46,10 +46,10 @@ docker-publish: ## Publish docker image
 lint: ## Run linting
 ifneq ($(strip $(COMPONENT)),)
 	cp .golangci.yaml $(COMPONENT)
-	docker buildx build . -f Dockerfile --target lint --build-context component=$(COMPONENT)
+	docker build . -f Dockerfile --target lint --build-context component=$(COMPONENT)
 	rm -rf $(COMPONENT)/.golangci.yaml
 else
-	docker buildx build . -f Dockerfile --target lint --build-context component=.
+	docker build . -f Dockerfile --target lint --build-context component=.
 endif
 
 .PHONY: fmt
